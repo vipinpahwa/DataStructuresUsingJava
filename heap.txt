@@ -1,0 +1,43 @@
+import java.io.*;
+class max_heap
+{
+void build_max_heap(int arr)
+{
+int heap_size,i;
+heap_size=arr.length;
+for(i=1;i<=heap_size-1;i++)
+{
+max_heapify(arr,i);
+}
+}
+void max_heapify(int arr,int i)
+{
+int l,r,heap_size,large;
+l=2*i;
+r=2*i+1;
+large=i;
+if(l<=heap_size-1 && arr[l]>arr[large])
+large=l;
+if(r<=heap_size-1 && arr[r]>arr[large])
+large=r;
+if(large!=i)
+{
+temp=arr[i];
+arr[i]=arr[large];
+arr[large]=temp;
+this.max_heapify(arr,large);
+}
+}
+public static void main(String args[])throws IOException
+{
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+max_heap ob=new max_heap();
+int size;
+int arr[];
+System.out.println("Enter size of heap");
+size=Integer.parseInt(br.readLine());
+arr=new int[size+1];
+System.out.println("Enter elements");
+for(i=1;i<=size;i++)
+arr[i]=Integer.parseInt(br.readLine());
+ob.build_max_heap(arr);
